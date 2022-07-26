@@ -1,7 +1,11 @@
 {
   "name": "learning-ecmascript-next",
   "scripts": {
+<<<<<<< HEAD
     "dev": "live-server --host=localhost --port=3000 --no-browser --cors",
+=======
+    "dev": "live-server src --host=localhost --port=3000 --no-browser",
+>>>>>>> 6561018ac8e482b08a877a56418975212142ce29
     "compile": "babel src/chapter/*.js -d compiled",
     "watch": "npm run compile -- --watch",
     "test": "jest --watchAll",
@@ -27,7 +31,11 @@
     "eslint": "8.13.0",
     "eslint-plugin-jest": "26.1.4",
     "jest": "27.5.1",
+<<<<<<< HEAD
     "live-server": "^1.2.2",
+=======
+    "live-server": "1.2.2",
+>>>>>>> 6561018ac8e482b08a877a56418975212142ce29
     "regenerator-runtime": "0.13.9",
     "rimraf": "3.0.2"
   }
