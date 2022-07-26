@@ -18,7 +18,7 @@
 // let 프리미티브 타입 (숫자, 문자, 불리언, null, undefined, Symbol)
 // const 객체 타입 (함수, 배열, 객체)
 //        - 타입 선언할 때 타입이 더 이상 변경되지 않도록 조치
-const fibonacci = (n) => (n <= 1) ? 1 : fibonacci(n - 1) + fibonacci(n - 2);
+const fibonacci = (n) => (n <= 1 ? 1 : fibonacci(n - 1) + fibonacci(n - 2));
 
 console.log(fibonacci(8));
 
@@ -30,3 +30,20 @@ const numberWithComma = (n) => {
 
 console.log(numberWithComma(typeof 17e3));
 console.log(numberWithComma(17_000));
+
+// 일반 함수 식 vs. 화살표 함수 식
+const calcPrice = function () {
+  // 함수 내부에서만 접근 가능한 인자 집합 객체
+  // arguments
+
+  // 메서드 빌려쓰기 패턴
+  // Function.prototype.call(thisArg, params)
+  const args = Array.prototype.slice.call(arguments);
+  console.log(args);
+  // return priceA + priceB;
+  return args.reduce((total, current) => total + current, 0);
+};
+
+const sum = (...args/* 전개 연산자, 나머지 매개변수*/) => args.reduce((total, current) => total + current, 0);
+
+console.log(sum(1000, 10, 100));
