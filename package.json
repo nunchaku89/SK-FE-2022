@@ -5,8 +5,10 @@
   "version": "0.0.1",
   "description": "웹 브라우저 환경에서의 React 앱",
   "devDependencies": {
+    "@babel/cli": "7.18.9",
     "@babel/core": "7.16.0",
     "@babel/preset-env": "7.16.0",
+    "@babel/preset-react": "7.18.6",
     "@testing-library/jest-dom": "5.15.0",
     "@types/jest": "27.0.2",
     "babel-jest": "27.3.1",
@@ -23,7 +25,10 @@
   },
   "scripts": {
     "start": "run-p serve watch:compile",
-    "serve": "npx live-server public",
+    "serve": "live-server public --host=localhost --port=3000 --no-browser",
+    "jsx:compile": "babel public/src/*.js -d public/js",
+    "jsx:watch": "npm run jsx:compile -- --watch",
+    "jsx:build": "npm run jsx:compile -- --minified",
     "compile": "babel public/src/*.js -d public/scripts",
     "watch:compile": "npm run compile -- -w",
     "lint": "eslint ./ --ignore-path .gitignore",
