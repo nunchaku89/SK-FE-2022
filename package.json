@@ -24,7 +24,7 @@
     "prettier": "2.4.1"
   },
   "scripts": {
-    "start": "run-p serve watch:compile",
+    "start": "run-p jsx:watch serve",
     "serve": "live-server public --host=localhost --port=3000 --no-browser",
     "jsx:compile": "babel public/src/*.js -d public/js",
     "jsx:watch": "npm run jsx:compile -- --watch",

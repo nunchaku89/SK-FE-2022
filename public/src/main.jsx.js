@@ -6,7 +6,7 @@ const container = document.getElementById('root');
 const root = createRoot(container);
 
 const appState = Object.freeze({
-  headline: '명령형 프로그래밍 (Imperative Programming)',
+  headline: 'Imperative Programming',
   description: `In computer science, imperative programming is a programming paradigm
   that uses statements that change a program's state.`,
 });
@@ -17,8 +17,7 @@ const appState = Object.freeze({
 const getCurrentYear = () => new Date().getFullYear();
 
 const appStyles = {
-  padding: 40 + 10 + 'px',
-  lineHeight: 4,
+  lineHeight: 1.5,
 };
 
 const app = (
