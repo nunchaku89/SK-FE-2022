@@ -67,6 +67,7 @@ const appVNode = h(
 // console.log(appVNode);
 
 // ReactDOM API
+// IE 지원
 // v17-
 // ReactDOM.render()
 
@@ -80,7 +81,8 @@ const container = document.getElementById('root');
 /* -------------------------------------------------------------------------- */
 
 // v18+
-// ReactDOM.createRoot()
+// IE 미지원
+// ReactDOM/client.createRoot()
 const reactDomRoot = ReactDOM.createRoot(container);
 
 reactDomRoot.render(appVNode);
