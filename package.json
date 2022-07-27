@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "webpack serve -c ./webpack/server.js",
-    "compile": "webpack -c ./webpack/dev.js"
+    "compile": "webpack -c ./webpack/dev.js",
+    "build": "webpack build -c ./webpack/build.js"
   },
   "devDependencies": {
     "webpack": "5.74.0",
