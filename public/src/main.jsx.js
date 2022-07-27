@@ -17,7 +17,7 @@ const appState = Object.freeze({
 const getCurrentYear = () => new Date().getFullYear();
 
 const appStyles = {
-  padding: '40px',
+  padding: 40 + 10 + 'px',
   lineHeight: 4,
 };
 

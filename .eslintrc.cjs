@@ -26,7 +26,7 @@ module.exports = {
     },
   },
   plugins: ['react', 'jest'],
-  ignorePatterns: ['public/scripts/*.js'],
+  ignorePatterns: ['public/scripts/*.js', 'public/js/*.js'],
   rules: {
     'no-unused-vars': 'warn',
   },
