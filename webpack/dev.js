@@ -11,6 +11,15 @@ const devConfig = {
     path: path.resolve(process.cwd(), 'public'),
     filename: 'js/main.js',
   },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/i,
+        exclude: /node_modules/,
+        use: 'babel-loader',
+      },
+    ],
+  },
 };
 
 module.exports = devConfig;
