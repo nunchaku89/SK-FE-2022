@@ -1,0 +1,14 @@
+{
+  "name": "manual-config-react-dev",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "serve": "webpack serve -c ./webpack/server.js",
+    "compile": "webpack -c ./webpack/dev.js"
+  },
+  "devDependencies": {
+    "webpack": "5.74.0",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  }
+}
