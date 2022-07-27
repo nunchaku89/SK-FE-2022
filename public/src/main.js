@@ -1,5 +1,8 @@
 // @ts-nocheck
+/* global React, ReactDOM */
+
 // console.log(React.version);
+// console.log(ReactDOM.version);
 
 // 실제 DOM 요소 노드 : div#app
 const appNode = document.createElement('div');
@@ -61,4 +64,29 @@ const appVNode = h(
   translateButtonVNode
 );
 
-console.log(appVNode);
+// console.log(appVNode);
+
+// ReactDOM API
+// v17-
+// ReactDOM.render()
+
+const container = document.getElementById('root');
+// console.log('DEBUG →  ~ container', container);
+
+// ReactDOM.render(appVNode, container, () =>
+//   console.log('React 앱이 마운트(렌더링) 또는 업데이트 되었습니다.')
+// );
+
+/* -------------------------------------------------------------------------- */
+
+// v18+
+// ReactDOM.createRoot()
+const reactDomRoot = ReactDOM.createRoot(container);
+
+reactDomRoot.render(appVNode);
+
+// Web API
+// time control
+// setTimeout
+
+setTimeout(() => reactDomRoot.unmount(), 3000);
