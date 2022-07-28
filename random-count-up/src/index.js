@@ -1,13 +1,17 @@
-import './styles/globals.css';
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import App from './app/App';
+import 'react-app-polyfill/ie11';
+import 'react-app-polyfill/stable';
 
-createRoot(document.getElementById('root')).render(
+import 'styles/globals.css';
+import { StrictMode } from 'react';
+import { render } from 'react-dom';
+import reportWebVitals from './reportWebVitals';
+import App from 'app/App';
+
+render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
+  document.getElementById('root')
 );
 
 // 배포
