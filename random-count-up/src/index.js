@@ -5,9 +5,9 @@ import 'styles/globals.css';
 import App from 'app/App';
 
 createRoot(document.getElementById('root')).render(
-  // <StrictMode>
-  <App />
-  // </StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
 
 /* 배포 시 처리 ------------------------------------------------------------------ */

@@ -6,21 +6,24 @@ import StatefulComponent from 'pages/Stateful';
 import SideEffects from 'pages/SideEffects';
 import RandomCountUp from 'pages/RandomCountUp/RandomCountUp';
 import { TiltCardContainer } from 'components';
+import { ThemeProvider } from 'contexts/theme';
 
 function App() {
   return (
     <div className="app" style={{ padding: 40 }}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<div children="this is home page" />} />
-          <Route path="/tilt" element={<TiltCardContainer />} />
-          <Route path="/side-effects" element={<SideEffects />} />
-          <Route path="/jsx-in-action" element={<JsxInAction />} />
-          <Route path="/random-count-up" element={<RandomCountUp />} />
-          <Route path="/stateless" element={<StatelessComponent />} />
-          <Route path="/stateful" element={<StatefulComponent />} />
-        </Routes>
-      </Router>
+      <ThemeProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<div children="this is home page" />} />
+            <Route path="/tilt" element={<TiltCardContainer />} />
+            <Route path="/side-effects" element={<SideEffects />} />
+            <Route path="/jsx-in-action" element={<JsxInAction />} />
+            <Route path="/random-count-up" element={<RandomCountUp />} />
+            <Route path="/stateless" element={<StatelessComponent />} />
+            <Route path="/stateful" element={<StatefulComponent />} />
+          </Routes>
+        </Router>
+      </ThemeProvider>
     </div>
   );
 }
