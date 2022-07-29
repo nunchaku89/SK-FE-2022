@@ -1,55 +1,79 @@
 import './TiltCardContainer.css';
-import { Component } from 'react';
+import React, { useState } from 'react';
+import { useFetch } from 'hooks';
 import { TiltCard } from 'components';
+import { ReactComponent as Spinner } from 'assets/earth.svg';
 
 /* -------------------------------------------------------------------------- */
 
-export class TiltCardContainer extends Component {
-  state = {
-    cards: [
-      { id: 'card-vanilla', text: 'Vanilla Tilt Card' },
-      { id: 'card-jquery', text: 'jQuery Tilt Card' },
-      { id: 'card-react', text: 'React Tilt Card' },
-    ],
+export const TiltCardContainer = () => {
+  const { loading, error, data } = useFetch('/api/tiltcard');
+
+  const cards = data && 'cards' in data ? data.cards : [];
+
+  const handleRemoveCard = (id) => {
+    // setCards(cards.filter((card) => card.id !== id));
   };
 
-  handleRemoveCard = (id) => {
-    this.setState({
-      ...this.state,
-      cards: this.state.cards.filter((card) => card.id !== id),
-    });
-  };
-
-  render() {
-    const { cards } = this.state;
-
+  if (loading) {
     return (
-      <div className="tiltCardContainer" lang="en">
-        <div className="tiltCardContainer__buttonGroup">
-          {cards.map(({ id, text }) => (
+      <figure
+        style={{
+          position: 'fixed',
+          zIndex: 10000,
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          display: 'flex',
+          flexFlow: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          margin: 0,
+          width: '100vw',
+          minHeight: '100vh',
+        }}
+      >
+        <Spinner style={{ margin: 0 }} />
+        <figcaption>로딩 중....</figcaption>
+      </figure>
+    );
+  }
+  if (error) return <div role="alert">{error.message}</div>;
+
+  const hasCards = cards && cards.length > 0;
+
+  return (
+    <div className="tiltCardContainer" lang="en">
+      <div className="tiltCardContainer__buttonGroup">
+        {hasCards &&
+          cards.map(({ id, text }) => (
             <button
               key={id}
               type="button"
               className="tiltCardContainer__button"
-              onClick={() => this.handleRemoveCard(id)}
+              onClick={() => handleRemoveCard(id)}
             >
               {text} 제거
             </button>
           ))}
-        </div>
-        <ul className="tiltCardContainer__list">
-          {cards.map((card) => (
+      </div>
+      <ul className="tiltCardContainer__list">
+        {hasCards &&
+          cards.map((card) => (
             <li key={card.id}>
               <TiltCard
                 card={card}
-                options={{ 'max-glare': 0.2, 'perspective': 600 }}
+                options={{
+                  'max-glare': 0.2,
+                  perspective: 600,
+                }}
               >
                 {card.text}
               </TiltCard>
             </li>
           ))}
-        </ul>
-      </div>
-    );
-  }
-}
+      </ul>
+    </div>
+  );
+};

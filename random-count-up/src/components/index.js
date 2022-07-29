@@ -8,4 +8,6 @@ export * from './Button/Button';
 export * from './Footer/Footer';
 export * from './Banner/Banner';
 export * from './Layout/Base';
+export * from './TiltCard/TiltCard';
+export * from './TiltCardContainer/TiltCardContainer';
 export * from './demo';
