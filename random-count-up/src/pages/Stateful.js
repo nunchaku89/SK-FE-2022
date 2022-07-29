@@ -1,10 +1,15 @@
-import { useState, Component } from 'react';
+import { useState, useCallback, useMemo, Component } from 'react';
 import { InteractHeadline, A11yHidden } from 'components';
 import { arrayOf, oneOfType, number, string } from 'prop-types';
 import { UserType } from 'types';
 import { fibonacci } from 'utils';
+import { useTheme } from 'contexts/theme';
 
 function StatefulComponent() {
+  const themeConfig = useTheme(); // { theme, setTheme }
+
+  console.log(themeConfig);
+
   // const { isShowChild, containerStyle, color, background, theme, members } = this.state;
 
   // 함수 컴포넌트가 상태를 관리하는 방법
@@ -27,7 +32,7 @@ function StatefulComponent() {
   const [theme, setTheme] = useState('dark');
   const [background, setBackground] = useState('#000');
   const [color, setColor] = useState('#fff');
-  const [members] = useState([
+  const [members, setMemebers] = useState([
     { id: 'user-1', name: '해오랑', age: 23 },
     { id: 'user-2', name: '김이박', age: 45 },
     { id: 'user-3', name: '박현식', age: 39 },
@@ -45,7 +50,12 @@ function StatefulComponent() {
     setIsShowChild(!isShowChild);
   };
 
-  const calcFibo = () => fibonacci(count);
+  // 함수 컴포넌트가 리-렌더링 될 때 마다 함수 실행 컨텍스트 초기화
+  // useCallback(() => {}, deps)은 useMemo(() => () => {}, deps)와 같습니다.
+  const calcFibo = useCallback(() => {
+    console.log('memoized callback', count);
+    return fibonacci(count);
+  }, [count]);
 
   return (
     <div
@@ -68,6 +78,17 @@ function StatefulComponent() {
           Storage 'yamoo9 : <b>{storage.toString()}</b>
         </output>
       </div>
+      <button
+        onClick={() =>
+          setMemebers((members) => {
+            return members.filter((member, index) => {
+              return index !== 0;
+            });
+          })
+        }
+      >
+        remove member
+      </button>
       <button onClick={() => setCount(count + step)}>
         Calcuration Fibonacci
       </button>
