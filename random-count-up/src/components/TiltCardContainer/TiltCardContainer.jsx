@@ -1,5 +1,5 @@
 import './TiltCardContainer.css';
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFetch } from 'hooks';
 import { TiltCard } from 'components';
 import { ReactComponent as Spinner } from 'assets/earth.svg';
@@ -8,11 +8,11 @@ import { ReactComponent as Spinner } from 'assets/earth.svg';
 
 export const TiltCardContainer = () => {
   const { loading, error, data } = useFetch('/api/tiltcard');
-
-  const cards = data && 'cards' in data ? data.cards : [];
+  const [cards, setCards] = useState(null);
+  useEffect(() => setCards(data?.cards), [data]);
 
   const handleRemoveCard = (id) => {
-    // setCards(cards.filter((card) => card.id !== id));
+    setCards(cards.filter((card) => card.id !== id));
   };
 
   if (loading) {
@@ -41,6 +41,7 @@ export const TiltCardContainer = () => {
   }
   if (error) return <div role="alert">{error.message}</div>;
 
+  // derived state ← cards
   const hasCards = cards && cards.length > 0;
 
   return (
