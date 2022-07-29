@@ -13,7 +13,13 @@ function StatefulComponent() {
 
   // lazy Initialization
   // const [state, updateFunction] = useState(() => )
+  // React Hooks = Memoization
   // const [fibo] = useState(() => fibonacci(30));
+  const [storage] = useState(() => {
+    const yamoo9 = localStorage.getItem('yamoo9');
+    return !yamoo9 ? false : true;
+  });
+
   const [count, setCount] = useState(10);
   const [step] = useState(10);
 
@@ -57,6 +63,9 @@ function StatefulComponent() {
         </output>
         <output>
           Fibonacci: <b>{calcFibo()}</b>
+        </output>
+        <output>
+          Storage 'yamoo9 : <b>{storage.toString()}</b>
         </output>
       </div>
       <button onClick={() => setCount(count + step)}>
